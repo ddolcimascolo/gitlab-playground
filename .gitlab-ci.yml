@@ -16,7 +16,6 @@ build:
   script:
     - echo "Building..."
   artifacts:
-    expires: 1d
     paths:
       - index.html
 

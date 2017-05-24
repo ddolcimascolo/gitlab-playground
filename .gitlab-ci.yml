@@ -23,6 +23,7 @@ deploy:
   stage: deploy
   tags:
     - jabba
+    - shell
   environment:
     name: staging
     url: http://62.210.104.135/gitlab/

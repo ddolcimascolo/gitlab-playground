@@ -1,21 +1,34 @@
 stages:
   - test
+  - build
   - deploy
 
 before_script:
   - echo "Hello World !"
  
 test:
-  tags:
-    - jabba
   stage: test
   script:
     - echo "Testing..."
 
+build:
+  stage: build
+  script:
+    - echo "Building..."
+  artifacts:
+    expires: 1d
+    paths:
+      - index.html
+
 deploy:
+  stage: deploy
+  tags:
+    - jabba
   environment:
     name: staging
     url: http://62.210.104.135/gitlab/
+  dependencies:
+    - build
   script:
     - rsync -avz index.html /var/www/html/gitlab/
   only:

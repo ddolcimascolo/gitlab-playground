@@ -1,0 +1,22 @@
+stages:
+  - test
+  - deploy
+
+before_script:
+  - echo "Hello World !"
+ 
+test:
+  tags:
+    - jabba
+  stage: test
+  script:
+    - echo "Testing..."
+
+deploy:
+  environment:
+    name: staging
+    url: http://62.210.104.135/gitlab/
+  script:
+    - rsync -avz index.html /var/www/html/gitlab/
+  only:
+    - master
